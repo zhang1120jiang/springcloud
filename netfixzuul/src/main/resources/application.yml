@@ -1,0 +1,30 @@
+server:
+  port: 8088
+spring:
+  application:
+    name: gateway
+#配置路由
+# 当我们访问的路径中含有 /api-a/xx 时候，就会把路由到http://localhost:8080/这个里
+# 缺点：ip改了，运维的需要维护
+#zuul:
+#  routes:
+#    api-a:
+#      path: /api-a/xx
+#      url: http://localhost:8080/
+#    api-b:
+#        path: /api-b/xx
+#        url: http://localhost:8081/
+
+# 与eureka进行整合,使用serviceid进行匹配
+zuul:
+  routes:
+    api-a:
+      path: /api-a/**
+      serviceId: eurekaclient
+    api-b:
+      path: /api-b/**
+      serviceId: eurekaclient2
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8081/eureka/

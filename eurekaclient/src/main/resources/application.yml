@@ -1,0 +1,9 @@
+server:
+  port: 8083
+eureka:
+  client:
+    service-url:
+      defaultZone: http://peer2:1112/eureka/,http://peer1:1111/eureka/
+spring:
+  application:
+    name: eurekaclient
